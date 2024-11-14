@@ -10,11 +10,10 @@ export class UserController {
   constructor(private readonly usersService: UserService, private jwtService: JwtService) {}
 
   // Register route
-  @Post('register')
+  @Post('/register')
   async register(@Body() body: { username: string; password: string ,name:string, email:string,mobile:string}) {
-    //const { username, password } = body;
     const user = await this.usersService.register(body);
-    return { message: 'User registered successfully', user };
+    return user
   }
 
   // Login route

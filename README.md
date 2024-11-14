@@ -1,73 +1,58 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Learning Management System (LMS) with Adaptive Testing
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a Learning Management System (LMS) with an adaptive testing feature, built using **NestJS** for the backend and **MongoDB** as the database. It includes user registration, login, and test-taking functionality with an adaptive algorithm to adjust question difficulty based on user responses.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Table of Contents
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Project Setup](#project-setup)
+- [Database Connection](#database-connection)
+- [Scripts and Commands](#scripts-and-commands)
+  - [Seeding the Database](#seeding-the-database)
+  - [Running the Server](#running-the-server)
+- [Project Structure](#project-structure)
+- [Endpoints](#endpoints)
 
-## Installation
+---
 
-```bash
-$ npm install
-```
+## Project Setup
 
-## Running the app
+1. **Clone the Repository**:
+    ```bash
+    git clone <repository-url>
+    cd <repository-folder>
+    ```
 
-```bash
-# development
-$ npm run start
+2. **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-# watch mode
-$ npm run start:dev
+3. **Set Up Environment Variables**:
+   Create a `.env` file in the root directory and add the following variables:
+    ```plaintext
+    PORT=3000
+    MONGODB_URI=<your_mongodb_uri>
+    ```
 
-# production mode
-$ npm run start:prod
-```
+    - Replace `<your_mongodb_uri>` with your MongoDB connection string (e.g., from MongoDB Atlas).
+    - Replace `<your_jwt_secret_key>` with a strong secret key for JWT authentication.
 
-## Test
+4. **Install MongoDB Atlas or MongoDB locally**:
+   - This project uses MongoDB as the database, and the default connection URI can be configured in the `.env` file.
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## Database Connection
 
-# test coverage
-$ npm run test:cov
-```
+The project connects to MongoDB using Mongoose. The connection URI should be set in the `.env` file:
 
-## Support
+```plaintext
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/<database>?retryWrites=true&w=majority
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Run a Post API for seeding 500 dummy Quesions on database 
+API is - hostURL/seed
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
-
-Nest is [MIT licensed](LICENSE).

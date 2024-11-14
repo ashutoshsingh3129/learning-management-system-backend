@@ -12,8 +12,8 @@ import { UserService } from 'src/user/user.service';
   imports: [
     UserModule,
     JwtModule.register({
-      secret: 'ashu', // Define your secret here
-      signOptions: { expiresIn: '12h' }, // Optional: set token expiration
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '12h' },
     }),
     RequestContextModule
   ],

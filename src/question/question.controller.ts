@@ -1,13 +1,18 @@
 // src/questions/questions.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards, ForbiddenException } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { Question } from './schemas/question.schema';
 import { AuthGuard } from '../auth/auth.guard'; // Use AuthGuard if necessary to restrict access
+import { RequestContextService } from 'src/shared/request-context/request-context.service';
 
 @Controller('question')
 @UseGuards(AuthGuard)
 export class QuestionController {
-  constructor(private readonly questionsService: QuestionService) {}
+  constructor(private readonly questionsService: QuestionService,
+    private requestContextService:RequestContextService
+
+
+  ) {}
 
   // Create a new question (admin only)
   @Post()
@@ -15,6 +20,8 @@ export class QuestionController {
   async createQuestion(
     @Body() data: { difficulty: number; content: string; choices: Record<string, string>; correctAnswer: string },
   ): Promise<Question> {
+   let role= this.requestContextService.get('role')
+   if(role!=="ADMIN") throw new ForbiddenException('Only admin can crete')
     return this.questionsService.createQuestion(data);
   }
 
@@ -36,6 +43,8 @@ export class QuestionController {
     @Param('id') id: string,
     @Body() data: Partial<Question>,
   ): Promise<Question> {
+    let role= this.requestContextService.get('role')
+    if(role!=="ADMIN") throw new ForbiddenException('Only admin can update')
     return this.questionsService.updateQuestion(id, data);
   }
 
